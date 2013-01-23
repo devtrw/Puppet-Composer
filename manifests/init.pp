@@ -6,18 +6,26 @@ class composer ($installLocation) {
 
     Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 
-    package { ["php", "curl"]: ensure => "present" }
-    ->
+    if (!defined(Package["php"])) {
+        package{ "php": ensure => "present" }
+    }
+
+    if (!defined(Package["curl"])) {
+        package{ "curl": ensure => "present" }
+    }
+
     exec { "install-composer-phar":
         command => "curl -s https://getcomposer.org/installer | php",
         cwd     => $installLocation,
-        creates => "${installLocation}/composer.phar"
+        creates => "${installLocation}/composer.phar",
+        require => [Package["php"], Package["curl"]]
     }
     ->
     exec { "update-composer-vendors":
         command => "php composer.phar install",
         cwd     => $installLocation,
         creates => "$installLocation/vendor/",
+        onlyif  => "test -f $installLocaion/composer.json",
         timeout => 0
     }
 
