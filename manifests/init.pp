@@ -25,7 +25,6 @@ class composer ($installLocation) {
         command => "php composer.phar install",
         cwd     => $installLocation,
         creates => "$installLocation/vendor/",
-        onlyif  => "test -f $installLocaion/composer.json",
         timeout => 0
     }
 
