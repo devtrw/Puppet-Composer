@@ -1,6 +1,6 @@
 # == Class: composer
 #
-#   This class handles installing composer and composer assets
+#   Handles installing composer and composer assets
 #
 class composer ($installLocation) {
 
