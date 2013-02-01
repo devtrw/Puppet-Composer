@@ -10,7 +10,7 @@ class composer ($installLocation) {
         package{ "php": ensure => "present" }
     }
 
-    if (!defined(Package["curl"])) {
+    if (!defined(Package["php5-curl"])) {
         package{ "curl": ensure => "present" }
     }
 

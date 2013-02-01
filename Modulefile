@@ -1,5 +1,5 @@
 name 'devtrw-composer'
-version '0.0.1'
+version '0.0.2'
 
 author 'DevTRW'
 license ''
