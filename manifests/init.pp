@@ -18,7 +18,7 @@ class composer ($installLocation) {
         command => "curl -s https://getcomposer.org/installer | php",
         cwd     => $installLocation,
         creates => "${installLocation}/composer.phar",
-        require => [Package["php"], Package["curl"]]
+        require => [Package["php"], Package["php5-curl"]]
     }
     ->
     exec { "update-composer-vendors":
