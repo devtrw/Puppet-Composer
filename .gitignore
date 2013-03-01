@@ -1,1 +1,4 @@
 .idea
+tests/build/vendor/*
+tests/build/.vagrant
+tests/build/composer.lock
